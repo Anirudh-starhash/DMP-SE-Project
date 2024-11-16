@@ -106,8 +106,17 @@ def getAInfoReview(id):
 @review_blueprint.route("/getInfoReview/<int:id>", methods=['GET', 'POST'])
 def getInfoReview(id):
     blogs = db.session.execute(db.Select(Reviews).where(Reviews.blog_id == id)).scalars().all()
-    blogs_serialized = [blog.to_dict() for blog in blogs]  # Convert Blog instances to dict
-
+    blogs_serialized= [blog.to_dict() for blog in blogs]  # Convert Blog instances to dict
+    print(blogs_serialized)
+    return jsonify({
+        'review': blogs_serialized[0]
+    }), 200
+    
+@review_blueprint.route("/getInfoReview2/<int:id>", methods=['GET', 'POST'])
+def getInfoReview2(id):
+    blogs = db.session.execute(db.Select(Reviews).where(Reviews.blog_id == id)).scalars().all()
+    blogs_serialized= [blog.to_dict() for blog in blogs]  # Convert Blog instances to dict
+    print(blogs_serialized)
     return jsonify({
         'review': blogs_serialized
     }), 200

@@ -1,40 +1,49 @@
 <template>
     <div v-bind:class="['abc',{dark:isDarkMode},{ 'dark-background': isDarkMode }]">
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <div class="main">
-        <h1>ADMIN LOGIN
-           <button @click="toggleDarkMode" class="btn btn-primary mt-3">
-            <i v-if="isDarkMode" class="fas fa-sun"></i> <!-- Sun icon for light mode -->
-            <i v-else class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
-          </button>
-          <span class="c" v-if="isDarkMode"> &nbsp; &nbsp; Light Mode!</span>
-          <span class="c" v-else> &nbsp; &nbsp; Dark Mode!</span>
-        </h1>
+        <h1>CHANGE PASSWORD PAGE
+          <button @click="toggleDarkMode" class="btn btn-primary mt-3">
+           <i v-if="isDarkMode" class="fas fa-sun"></i> <!-- Sun icon for light mode -->
+           <i v-else class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
+         </button>
+         <span class="c" v-if="isDarkMode"> &nbsp;Light Mode!</span>
+         <span class="c" v-else> &nbsp; &nbsp; Dark Mode!</span></h1>
         <p>{{message}}</p>
         <div class="row">
-          <form @submit.prevent="admin_login">
-            <div class="mb-7">
-              <label for="exampleInputEmail1" class="form-label"><p class="x">Email address</p></label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email" value={{email}} required>
-            </div>
-            <div class="mb-7 password-container">
-              <label for="exampleInputPassword1" class="form-label"><p class="x">Password</p></label>
+          <form @submit.prevent="changePassword">
+            <div class="mb-11 password-container">
+              <label for="exampleInputPassword1" class="form-label"><p class="x">Old Password</p></label>
               <div class="input-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
+                <input type="password" class="form-control" id="exampleInputPassword1" v-model="old_password">
                 <span class="input-group-text" id="togglePassword"><i class="fas fa-eye"></i></span>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="mb-11 password-container">
+              <label for="exampleInputPassword2" class="form-label"><p class="x">New Password</p></label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="exampleInputPassword2" v-model="new_password">
+                <span class="input-group-text" id="togglePassword1"><i class="fas fa-eye"></i></span>
+              </div>
+            </div>
+            <div class="mb-11 password-container">
+              <label for="exampleInputPassword3" class="form-label"><p class="x">Confirm New Password</p></label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="exampleInputPassword3" v-model="confirm_new">
+                <span class="input-group-text" id="togglePassword2"><i class="fas fa-eye"></i></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button>
+            <button type="submit" class="btn btn-primary">Forgot Password</button>
           </form> 
-        </div>
+        </div> 
         <div class="buttons">
           <div>
             <a href="/">
               <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Home</button>
             </a>
           </div>
-         
         </div>
       </div>
      
@@ -44,20 +53,23 @@
   
   <script>
   import axios from 'axios'
-  import { useRouter  } from 'vue-router';
+  import { useRouter } from 'vue-router';
   export default {
-   name:'librarian_page',
+   name:'change_password',
+   setup(){
+    const router=useRouter();
+    return {router};
+   },
    data(){
     return {
-      message:'Welcome to Librarian Login Page',
+      message:'Welcome to Change Password Page',
       email:"",
-      password:"",
-      isDarkMode: true,
+      email_error:"",
+      isDarkMode: false,
+      old_password:"",
+      new_password:"",
+      confirm_new:""
     }
-   },
-   setup(){
-    const router = useRouter();
-    return { router };
    },
    mounted() {
       const togglePassword = document.querySelector('#togglePassword');
@@ -70,42 +82,67 @@
         // Toggle the eye slash icon
         this.querySelector('i').classList.toggle('fa-eye-slash');
       });
+      const togglePassword1 = document.querySelector('#togglePassword1');
+      const password1 = document.querySelector('#exampleInputPassword2');
+  
+      togglePassword1.addEventListener('click', function (e) {
+        // Toggle the type attribute
+        const type = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+        password1.setAttribute('type', type);
+        // Toggle the eye slash icon
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+      });
+      const togglePassword2 = document.querySelector('#togglePassword2');
+      const password2 = document.querySelector('#exampleInputPassword3');
+  
+      togglePassword2.addEventListener('click', function (e) {
+        // Toggle the type attribute
+        const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+        password2.setAttribute('type', type);
+        // Toggle the eye slash icon
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+      });
     },
     methods: {
       toggleDarkMode() {
         this.isDarkMode = !this.isDarkMode;
       },
-      async admin_login(){
-        try{
-          const response=await axios.post('http://127.0.0.1:5000/api/admin_login',
+      async changePassword(){
+        if(this.new_password==this.old_password){
+          alert("Old Password and New Password can't be same");
+          this.new_password=""
+          this.confirm_new=""
+        }
+        if(this.new_password==this.confirm_new){
+          const r=await axios.post("http://127.0.0.1:5000/api/change_password",
             JSON.stringify({
-               email:this.email,
-               password:this.password
+              'id':this.$route.params.id,
+              'new_password':this.new_password,
+              'old_password':this.old_password
             }),
             {
-               headers:{
-                     'Content-Type':'application/json'
-               },
-            });
-            
-  
-            if(response.status === 200){
-              const access_token=response.data.access_token
-              const info={
-                 "email":response.data.info["email"],
-                 "id":response.data.info["id"],
-                 "role":response.data.info["role"]
+              headers:{
+                'Content-Type':'application/json'
               }
-              localStorage.setItem("access_token",access_token);
-              localStorage.setItem("info",JSON.stringify(info));
-              this.$router.push("/admin_dashboard");
             }
-            else{
-              alert('Unauthorized logging!')
-            }
-        } 
-        catch(error){
-          console.log(error)
+          );
+
+          if(r.status==200){
+            alert('Password Successfully changed!');
+            this.$router.push(`/profile_page/${this.$route.params.id}`)
+          }
+          else if(r.status==201){
+            alert('Your Password is Wrong enter correct one')
+            this.old_password="";
+            this.new_password="";
+            this.confirm_new=""
+          }
+        }
+        else{
+          alert("Your new_password and confirm aren't same")
+          this.new_password="";
+          this.confirm_new=""
+
         }
       }
     }
@@ -145,6 +182,10 @@
     float: left;
     width: 60%; /* The width is 60%, by default */
   }
+
+  .dark .c{
+    color:black;
+  }
   
   /* Use a media query to add a breakpoint at 800px: */
   @media screen and (max-width: 800px) {
@@ -169,9 +210,6 @@
   
   .x:hover {
     transform: translate(2px);
-  }
-  .dark .c{
-    color:black;
   }
   
   .x {

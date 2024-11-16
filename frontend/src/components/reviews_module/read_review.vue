@@ -60,7 +60,7 @@ export default {
             }
           });
           if (r.status === 200) {
-            const response=await axios.get(`http://127.0.0.1:5000/api/getInfoReview/${this.$route.params.id}`,);
+            const response=await axios.get(`http://127.0.0.1:5000/api/getInfoReview2/${this.$route.params.id}`,);
             if(response.status===200){
                 this.review=response.data.review
             }

@@ -345,3 +345,25 @@ def generate_user_report(id):
     return jsonify({
         'status': 'Done',
     }), 200
+    
+#Change_password
+@user_blueprint.route("/change_password",methods=['GET','POST'])
+def change_password():
+    data=request.get_json()
+    id=data.get("id")
+    password=data.get("new_password")
+    old_password=data.get("old_password")
+    u=db.session.execute(db.Select(User).where(User.user_id==id)).scalar()
+    if check_password_hash(u.password,old_password):
+        u.password=generate_password_hash(password,method='pbkdf2:sha256',salt_length=8)
+        db.session.commit()
+        
+        return jsonify({
+            'msg':'Password changed! Successful!'
+        }),200
+        
+    else:
+        return jsonify({
+            'msg':'Password not same'
+        }),201
+        
