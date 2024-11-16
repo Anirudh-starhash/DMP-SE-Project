@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title: Blog API Documentation by Anirudh
+  version: 1.0.0
+  description: API for managing user and admin blogs, including CRUD operations.
+
+servers:
+  - url: /api/v1
+
+paths:
+  /getInfo/{id}:
+    get:
+      summary: Get all blogs for an admin and a specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Blogs retrieved successfully
+        '404':
+          description: User or blogs not found
+
+  /getOtherInfo/{id}:
+    get:
+      summary: Get all blogs for a given user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Other blogs retrieved successfully
+        '404':
+          description: Blogs not found
+
+  /getAllInfo:
+    get:
+      summary: Get all blogs for the admin and all users
+      responses:
+        '200':
+          description: All blogs retrieved successfully
+        '404':
+          description: Blogs not found
+
+  /getAInfoBlog/{id}:
+    get:
+      summary: Get a specific admin blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin blog retrieved successfully
+        '404':
+          description: Blog not found
+
+  /getInfoBlog/{id}:
+    get:
+      summary: Get a specific user blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User blog retrieved successfully
+        '404':
+          description: Blog not found
+
+  /getAdminInfoBlog/{id}:
+    get:
+      summary: Get a specific admin blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin blog retrieved successfully
+        '404':
+          description: Blog not found
+
+  /create_blob/{id}:
+    post:
+      summary: Create a new user blog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                subtitle:
+                  type: string
+                body:
+                  type: string
+      responses:
+        '200':
+          description: Blog created successfully
+        '201':
+          description: Blog title already exists
+
+  /edit_blob/{id}:
+    put:  # Changed to PUT for updating an existing user blog
+      summary: Edit an existing user blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                subtitle:
+                  type: string
+                body:
+                  type: string
+      responses:
+        '200':
+          description: Blog updated successfully
+        '404':
+          description: Blog not found
+
+  /delete_blob/{id}:
+    delete:  # Changed to DELETE for deleting an existing user blog by ID
+      summary: Delete an existing user blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Blog deleted successfully
+        '404':
+          description: Blog not found
+
+  /create_admin_blob/{id}:
+    post:
+      summary: Create a new admin blog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                subtitle:
+                  type: string
+                body:
+                  type: string
+      responses:
+        '200':
+          description: Admin blog created successfully
+        '201':
+          description: Admin blog title already exists
+
+  /edit_admin_blob/{id}:
+    put:  # Changed to PUT for updating an existing admin blog
+      summary: Edit an existing admin blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                subtitle:
+                  type: string
+                body:
+                  type: string
+      responses:
+        '200':
+          description: Admin blog updated successfully
+        '404':
+          description: Admin blog not found
+
+  /delete_admin_blob/{id}:
+    delete:  # Changed to DELETE for deleting an existing admin blog by ID
+      summary: Delete an existing admin blog by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin blog deleted successfully
+        '404':
+          description: Admin blog not found

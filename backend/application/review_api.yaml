@@ -1,0 +1,266 @@
+openapi: 3.0.0
+info:
+  title: Review API Documentation by Anirudh
+  description: API endpoints for managing reviews by users and admins.
+  version: 1.0.0
+paths:
+  /getReviewInfo/{id}:
+    get:
+      summary: Get reviews for a user and admin.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of reviews for the specified user and admin.
+    post:
+      summary: Fetch user and admin reviews via POST.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of reviews for the specified user and admin.
+
+  /getOtherReviewInfo/{id}:
+    get:
+      summary: Get all reviews.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of other reviews.
+
+  /getAllReviewInfo:
+    get:
+      summary: Get all reviews and user-specific reviews.
+      responses:
+        '200':
+          description: List of all reviews.
+
+  /getAInfoReview/{id}:
+    get:
+      summary: Get admin blog reviews by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Admin Blog ID.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin blog reviews.
+
+  /getInfoReview/{id}:
+    get:
+      summary: Get reviews by blog ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Reviews for a specific blog.
+
+  /getAdminInfoReview/{id}:
+    get:
+      summary: Get admin-specific reviews.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Admin Blog ID.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin-specific reviews.
+
+  /create_review/{id}/{user_id}:
+    post:
+      summary: Create a review by a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: User ID.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+      responses:
+        '200':
+          description: Review successfully created.
+
+  /edit_review/{id}/{user_id}:
+    put:
+      summary: Edit a review by a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: User ID.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+      responses:
+        '200':
+          description: Review successfully updated.
+
+  /delete_review/{id}/{user_id}:
+    delete:
+      summary: Delete a review by a user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: User ID.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Review successfully deleted.
+
+  /create_admin_review/{id}/{admin_id}:
+    post:
+      summary: Create an admin review.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: admin_id
+          in: path
+          required: true
+          description: Admin ID.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+      responses:
+        '200':
+          description: Admin review successfully created.
+
+  /edit_admin_review/{id}/{admin_id}:
+    put:
+      summary: Edit an admin review.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: admin_id
+          in: path
+          required: true
+          description: Admin ID.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+      responses:
+        '200':
+          description: Admin review successfully updated.
+
+  /delete_admin_review/{id}/{admin_id}:
+    delete:
+      summary: Delete an admin review.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Blog ID.
+          schema:
+            type: integer
+        - name: admin_id
+          in: path
+          required: true
+          description: Admin ID.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Admin review successfully deleted.

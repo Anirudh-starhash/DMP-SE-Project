@@ -1,0 +1,180 @@
+{
+    "entities": [
+      {
+        "name": "User",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "int",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "unique": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "unique": true
+          },
+          {
+            "name": "password_hash",
+            "type": "string"
+          },
+          {
+            "name": "role",
+            "type": "enum",
+            "values": ["user", "admin"]
+          }
+        ]
+      },
+      {
+        "name": "Blog",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "int",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "type": "text"
+          },
+          {
+            "name": "subtitle",
+            "type": "string"
+          },
+          {
+            "name": "author_id",
+            "type": "int",
+            "foreignKey": true
+          },
+          {
+            "name": "created_at",
+            "type": "datetime",
+            "default": "NOW()"
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "onUpdate": "NOW()"
+          }
+        ]
+      },
+      {
+        "name": "UserIssue",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "int",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          {
+            "name": "user_id",
+            "type": "int",
+            "foreignKey": true
+          },
+          {
+            "name": "doi",
+            "type": "datetime"
+          },
+          {
+            "name": "request_date",
+            "type": "datetime",
+            "default": "NOW()"
+          },
+          {
+            "name": "due_date",
+            "type": "datetime"
+          },
+          {
+            "name": "return_date",
+            "type": "datetime"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "re_issue",
+            "type": "int"
+          },
+          {
+            "name": "priority",
+            "type": "int"
+          },
+          {
+            "name": "resolved_by",
+            "type": "int",
+            "foreignKey": true
+          }
+        ]
+      },
+      {
+        "name": "DisasterAnalysis",
+        "attributes": [
+          {
+            "name": "id",
+            "type": "int",
+            "primaryKey": true,
+            "autoIncrement": true
+          },
+          {
+            "name": "disaster_name",
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "type": "datetime",
+            "default": "NOW()"
+          },
+          {
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "name": "success_rate",
+            "type": "float"
+          },
+          {
+            "name": "total",
+            "type": "int"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+    {
+      "source": "User",
+      "target": "Blog",
+      "type": "one-to-many"
+    },
+    {
+      "source": "User",
+      "target": "UserIssue",
+      "type": "one-to-many",
+      "relationship_attribute": "resolved_by"
+    },
+    {
+        "source":"Admin",
+        "target":"AdminBlog",
+        "type":"one to many"
+    }
+]
+}

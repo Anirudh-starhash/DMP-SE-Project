@@ -1,0 +1,329 @@
+openapi: 3.0.0
+info:
+  title: User API Documentation by Anirudh
+  version: 1.0.0
+  description: API documentation for the user-related endpoints in the backend system.
+
+paths:
+  /:
+    get:
+      summary: "Hello"
+      description: "Check backend connection."
+      responses:
+        '200':
+          description: Connection successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Hello You are connected from Backend!"
+
+  /user_register:
+    post:
+      summary: Register a new user
+      description: Register a new user with email, password, and name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  example: "password123"
+                name:
+                  type: string
+                  example: "John Doe"
+      responses:
+        '200':
+          description: Successful registration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Registered Successfully!"
+        '201':
+          description: User already registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Oops! You are already registered go to login page!"
+
+  /user_login:
+    post:
+      summary: Login a user
+      description: Authenticate user and return an access token if credentials are correct.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  example: "password123"
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+                  info:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      email:
+                        type: string
+                        example: "user@example.com"
+                      name:
+                        type: string
+                        example: "John Doe"
+                      role:
+                        type: string
+                        example: "user"
+                      status:
+                        type: boolean
+                        example: false
+        '201':
+          description: Incorrect email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Incorrect Credentials User Doesn't exist with this email id"
+        '202':
+          description: Incorrect password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Wrong Password!"
+
+  /user_logout:
+    post:
+      summary: Logout a user
+      description: Logout the authenticated user by unsetting JWT cookies.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Logged out Successfully"
+
+  /user_check_permission:
+    post:
+      summary: Check user permission
+      description: Verify if the authenticated user has access permissions.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Access Granted"
+        '201':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Access Denied"
+
+  /send_request/{id}:
+    post:
+      summary: Send request for user
+      description: Allow an eligible user to send a request.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: User ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "John Doe"
+                email:
+                  type: string
+                  example: "user@example.com"
+      responses:
+        '200':
+          description: Request registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Request registered Successfully!"
+        '201':
+          description: Request already pending
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "You have Already Requested Please Wait!"
+        '202':
+          description: Maximum requests sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Max requests Sent!"
+
+  /getUserInfo/{id}:
+    get:
+      summary: Get user information
+      description: Fetch detailed information of the specified user.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: User ID
+      responses:
+        '200':
+          description: User info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_info:
+                    type: object
+                    properties:
+                      user_id:
+                        type: integer
+                        example: 1
+                      user_name:
+                        type: string
+                        example: "John Doe"
+                      user_email:
+                        type: string
+                        example: "user@example.com"
+                      is_privileged:
+                        type: boolean
+                        example: true
+                      due_date:
+                        type: string
+                        format: date
+                        example: "2023-12-01"
+                      doi:
+                        type: string
+                        format: date
+                        example: "2023-11-01"
+
+  /return_Status/{id}:
+    post:
+      summary: Return user status
+      description: Update the user's status to reflect a return action.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: User ID
+      responses:
+        '200':
+          description: Return status updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Success"
+
+  /generate_user_report/{id}:
+    post:
+      summary: Generate user activity report
+      description: Generate and send a PDF report of the user's disaster activity to their email.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: User ID
+      responses:
+        '200':
+          description: Report generated and sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Done"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
