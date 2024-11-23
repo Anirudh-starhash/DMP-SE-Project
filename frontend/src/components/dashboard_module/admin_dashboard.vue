@@ -4,7 +4,11 @@
 
          <!-- header-->
           <admin_header :showSections="false" :showLib="false" :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode" />
-
+          <div>
+            <a href="/change_password">
+              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
+            </a>
+          </div>
 
           <div class="container">
             <div class="left-content">

@@ -352,6 +352,7 @@ def change_password():
     data=request.get_json()
     email=data.get("email")
     id=data.get("id")
+    print(id)
     password=data.get("new_password")
     old_password=data.get("old_password")
     u=db.session.execute(db.Select(User).where(User.user_id==id)).scalar()

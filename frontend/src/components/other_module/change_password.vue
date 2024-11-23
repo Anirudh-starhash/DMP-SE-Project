@@ -46,7 +46,6 @@
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Change Password</button>
-            <button type="submit" class="btn btn-primary">Forgot Password</button>
           </form> 
         </div> 
         <div class="buttons">
@@ -75,7 +74,7 @@
    data(){
     return {
       message:'Welcome to Change Password Page',
-      email:"",
+      id:'',
       email_error:"",
       isDarkMode: false,
       old_password:"",
@@ -133,7 +132,7 @@
         if(this.new_password==this.confirm_new){
           const r=await axios.post("http://127.0.0.1:5000/api/change_password",
             JSON.stringify({
-              'id':this.$route.params.id,
+              'id':JSON.parse(localStorage.getItem("info")).id,
               'new_password':this.new_password,
               'old_password':this.old_password,
               'email':this.email
@@ -146,8 +145,9 @@
           );
 
           if(r.status==200){
+            this.id=JSON.parse(localStorage.getItem("info")).id
             alert('Password Successfully changed!');
-            this.$router.push(`/profile_page/${this.$route.params.id}`)
+            this.$router.push(`/user_dashboard/${this.id}`)
           }
           else if(r.status==201){
             alert('Your Password is Wrong enter correct one')

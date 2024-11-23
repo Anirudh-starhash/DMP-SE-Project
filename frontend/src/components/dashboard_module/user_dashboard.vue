@@ -6,6 +6,12 @@
         <user_header :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode"  :showRequests="computedShowRequests" :showStatus="computedStatRequests" />
         
         <h1 :class="[isDarkMode ? 'h1dark' : 'h1light']">Hey {{ name_ }} <span v-if="status == 1">(Privileged)</span> <button @click="send1" class=" button-wrapper2 add">Send Alert</button></h1>
+        <div class="y">
+            <p>If You want to Change Password -> &nbsp;</p>
+            <a href="/change_password">
+              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
+            </a>
+        </div>
         <div class="container">
             <div class="left-content">
                 <div class="main-content">
@@ -205,6 +211,12 @@
         font-size: 30px; 
         text-align: center; 
     } 
+    .y{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
     #add:hover {
         transform: translate(2px);
         background-color: blue;

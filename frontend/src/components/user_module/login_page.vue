@@ -39,11 +39,6 @@
               <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Home</button>
             </a>
           </div>
-          <div>
-            <a href="/change_password">
-              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
-            </a>
-          </div>
         </div>
       </div>
      
