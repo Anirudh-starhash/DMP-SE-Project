@@ -14,10 +14,21 @@
         <div class="row">
           <form @submit.prevent="changePassword">
             <div class="mb-11 password-container">
+              <label for="exampleEmail" class="form-label"><p class="x">Email</p></label>
+              <div class="input-group">
+                <input type="email" class="form-control" id="email" v-model="email">
+              </div>
+            </div>
+            <div class="mb-11 password-container">
               <label for="exampleInputPassword1" class="form-label"><p class="x">Old Password</p></label>
               <div class="input-group">
                 <input type="password" class="form-control" id="exampleInputPassword1" v-model="old_password">
                 <span class="input-group-text" id="togglePassword"><i class="fas fa-eye"></i></span>
+              </div>
+              <div>
+                <a href="/forgot_password">
+                  <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Forgot Password</button>
+                </a>
               </div>
             </div>
             <div class="mb-11 password-container">
@@ -44,6 +55,7 @@
               <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Home</button>
             </a>
           </div>
+         
         </div>
       </div>
      
@@ -68,10 +80,11 @@
       isDarkMode: false,
       old_password:"",
       new_password:"",
-      confirm_new:""
+      confirm_new:"",
+      email:''
     }
    },
-   mounted() {
+   async mounted() {
       const togglePassword = document.querySelector('#togglePassword');
       const password = document.querySelector('#exampleInputPassword1');
   
@@ -102,6 +115,10 @@
         // Toggle the eye slash icon
         this.querySelector('i').classList.toggle('fa-eye-slash');
       });
+
+      this.email=JSON.parse(localStorage.getItem("info")).email
+
+
     },
     methods: {
       toggleDarkMode() {
@@ -118,7 +135,8 @@
             JSON.stringify({
               'id':this.$route.params.id,
               'new_password':this.new_password,
-              'old_password':this.old_password
+              'old_password':this.old_password,
+              'email':this.email
             }),
             {
               headers:{
