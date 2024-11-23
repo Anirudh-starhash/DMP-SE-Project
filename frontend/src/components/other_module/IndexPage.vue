@@ -1,211 +1,227 @@
 <template>
-    <div class="main-class">
-      <!-- Include Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-      <div class="main_nav container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="container-fluid">
-            <!-- Brand logo or name -->
-            <a class="navbar-brand text-light me-5 co" href="#">Disaster Management System</a>
-    
-            <!-- Navbar toggle button for mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <!-- Links on the left side -->
-              <ul class="nvbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3">
-                  <a class="nav-link active text-light co" aria-current="page" href="#">Home</a>
-                </li>
-              </ul>
-    
-              <!-- Buttons on the right side -->
-              <div class="navig">
-                <a href="/admin_page"><button class="btn btn-primary me-3 creative-btn">Admin</button></a>
-                <a href="/login_page"><button class="btn btn-primary me-3 creative-btn">Login</button></a>
-                <a href="/register_page"><button class="btn btn-secondary creative-btn">Register</button></a>
-              </div>
+  <div class="main-class">
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Navbar -->
+    <div class="main_nav container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <!-- Brand logo -->
+          <a class="navbar-brand text-light brand" href="#">BLOB</a>
+
+          <!-- Navbar toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Links -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+              </li>
+            </ul>
+            <div class="navig">
+              <a href="/admin_page">
+                <button class="btn btn-primary creative-btn">Admin</button>
+              </a>
+              <a href="/login_page">
+                <button class="btn btn-primary creative-btn">Login</button>
+              </a>
+              <a href="/register_page">
+                <button class="btn btn-secondary creative-btn">Register</button>
+              </a>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Header Section -->
+    <div class="center container">
+      <h1 class="fade-in">Blogs for Learning, Observing, and Building</h1>
+
+      <!-- Intro Section -->
+      <div class="intro">
+        <div class="row1">
+          <p><span>&#9733;</span> A platform to explore, write, and share unique blogs.</p>
+          <p>Foster creativity and connect with a vibrant blogging community.</p>
+          <p>Discover new perspectives and grow your voice through writing.</p>
+        </div>
+        <div class="row1">
+          <img
+            src="../../assets/images/blog_index.jpg"
+            alt="Creative Blogging Workspace"
+            class="workspace-image"
+          />
+        </div>
       </div>
-    
-      <div class="center container">
-        <div>
-          <h1>DISASTER MANAGEMENT SYSTEM</h1>
+
+      <!-- Developers Section -->
+      <div class="developers">
+        <h4>Developed by:</h4>
+        <div class="dev-names">
+          <p>Anirudh Pabbaraju (22CSB0A10)</p>
         </div>
-    
-        <div class="intro">
-          <div class="row1">
-            <p><span>&#9733;</span> A disaster management system that connects people with authorities and NGOs</p>
-            <p>Provides alert services, rescue coordination, and guidance during disasters</p>
-            <p>Enables communication between users and emergency responders</p>
-          </div>
-          <div class="row1">
-            <img src="../../assets/images/disaster_management.jpg" alt="disaster_management_system" style="max-width: 150%; height: 50%; object-fit: cover; border-radius: 5%;" class="center"/>
-          </div>
-        </div>
-        <div class="developers">
-            <h4>Developed by:</h4>
-            <div class="dev-names">
-              <p>Anirudh Pabbaraju (22CSB0A10)</p>
-              <p>Sandilya Voleti (22CSB0A18)</p>
-              <p>Pavan Kalyan (22CSB0A19)</p>
-            </div>
-        </div>
-  
-        <!-- Developer Names below row1 content -->
-        
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "index_page",
-  };
-  </script>
-  
-  <style scoped>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  </div>
+</template>
+
+<script>
+export default {
+  name: "index_page",
+};
+</script>
+
+<style scoped>
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Times New Roman", serif;
+}
+
+/* Main container */
+.main-class {
+  display: flex;
+  flex-direction: column;
+  height: 150vh;
+  position: relative;
+  background: url('../../assets/images/dmp_index.png') no-repeat center center/cover;
+  color: white;
+}
+
+/* Background overlay */
+.main-class::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: 0;
+}
+
+.center {
+  position: relative;
+  z-index: 1; /* Bring content above the overlay */
+}
+
+/* Navbar */
+.main_nav {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #007bff;
+}
+
+.nav-link:hover {
+  color: #ffd700 !important;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Header */
+h1 {
+  font-size: 50px;
+  margin-top: 20px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9); /* Strong shadow for contrast */
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Intro Section */
+.intro {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 40px 0;
+}
+
+.row1 {
+  flex: 1;
+  font-size: 20px;
+  color: #f2f2f2; /* Soft white text */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Text shadow for visibility */
+}
+
+.workspace-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}
+
+/* Developers Section */
+.developers h4 {
+  margin-top: 20px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.dev-names p {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #f9f9f9; /* Slightly brighter white */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Buttons */
+.creative-btn {
+  border-radius: 30px;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.creative-btn:hover {
+  transform: scale(1.1);
+  background-color: #ffd700;
+  color: black;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  html, body {
-    height: 100%;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .main-class {
-    display: flex;
-    flex-direction: column;
-    height: 150vh; /* Full screen height */
-    background-size: cover;
-    background-image: url('../../assets/images/dmp_index.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 1; /* Darkened opacity */
-    color: white; /* Ensure text is visible over the background */
-  }
-  
-  .main_nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    background-color: rgba(0, 0, 0, 0.7); /* Darker transparent navbar */
-  }
-  
-  .navig {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 10px;
-  }
-  
-  h1 {
-    color: #f8f9fa;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 45px;
-    margin-top: 20px;
-    text-shadow: 3px 3px 10px rgba(0, 123, 255, 0.8); /* Added text-shadow for brightness */
-  }
-  
-  p, a {
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-    font-size: 20px;
-    color: #f8f9fa;
-  }
-  
-  .co, p {
-    color:darkblue;
-    font-weight: bold;
-    font-size: 25px;
-  }
-  
-  .center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .row1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    font-size: 30px; /* Increased font size */
-    color: #333; /* Darker text color */
-    margin: 20px 0;
-  }
-  
+}
+
+@media (max-width: 768px) {
   .intro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 60px;
-    width: 100%;
-    margin: 20px 0;
-    flex-grow: 1;
-  }
-  
-  .developers {
-    display:flex;
     flex-direction: column;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: black;
+    align-items: center;
   }
-  
-  .developers p {
-    color: darkblue;
-    font-weight: bold;
+
+  .workspace-image {
+    max-width: 90%;
   }
-  
-  .dev-names {
-    display: flex;
-    flex-direction: columns;
-    justify-content: space-evenly;
-    gap: 40px;
-  }
-  
-  .creative-btn {
-    border-radius: 30px;
-    font-size: 18px;
-    padding: 12px 24px;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .creative-btn:hover {
-    background-color: #007bff;
-    transform: scale(1.1);
-    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.6);
-  }
-  
-  @media (max-width: 768px) {
-    .intro {
-      flex-direction: column;
-    }
-  
-    .row1 {
-      margin-bottom: 20px;
-    }
-  
-    .dev-names {
-      flex-direction: column; /* Stack developer names vertically on small screens */
-      gap: 10px;
-    }
-  }
-  </style>
-  
+}
+</style>
+

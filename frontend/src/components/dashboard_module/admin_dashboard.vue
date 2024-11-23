@@ -4,7 +4,8 @@
 
          <!-- header-->
           <admin_header :showSections="false" :showLib="false" :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode" />
-          <div>
+          <h1 :class="[isDarkMode ? 'h1dark' : 'h1light']" class="y">Hey Admin</h1>
+          <div class="y">
             <a href="/change_password">
               <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
             </a>
@@ -101,7 +102,8 @@
         user_blogs:[],
         user_blog_count:0,
         isDarkMode:false,
-        id:''
+        id:'',
+        name_:''
       }
      },
      components:{
@@ -122,6 +124,7 @@
     return {router};
   },
   async mounted(){
+    this.name_=JSON.parse(localStorage.getItem("info")).name
     const access_token=localStorage.getItem("access_token");
     if(!access_token){
       alert('You need to login first to come here!')
@@ -151,6 +154,7 @@
                   this.user_blogs=response.data.user_blogs;
                   this.user_blog_count=this.user_blogs.length;
                 }
+
          }
 
       }
@@ -179,6 +183,12 @@
     font-size: 30px; 
     text-align: center; 
 } 
+.y{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
   #add:hover{
     transform: translate(2px);
     background-color: blue;
