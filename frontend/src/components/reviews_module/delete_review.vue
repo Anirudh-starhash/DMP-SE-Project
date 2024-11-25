@@ -94,166 +94,98 @@
   
   
   <style scoped>
-    .x{
-        color: #fed7aa;
-    }
-    .x1{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-    .x:hover{
-        background-color: transparent !important;
-    }
-   .left,.right {
-     float: left;
-     width: 20%; /* The width is 20%, by default */
-  } 
-  .add{
-    margin-top: auto;
-  }
-  #add{ 
-    width: 70px; 
-    height: 70px; 
-    padding: 10px 16px; 
-    border-radius: 35px; 
-    font-size: 30px; 
-    text-align: center; 
-  } 
-  #add:hover{
-    transform: translate(2px);
-    background-color: blue;
-    color: white;
-  }
-  
-   .x{
-    height: 40px;
-    width: 100px;
-   }
-   .x:hover{
-    transform: translate(2px);
-    background-color: darkolivegreen;
-    color:aliceblue;
-   }
-  
-  .main {
-    float: left;
-    width: 60%; /* The width is 60%, by default */
-  }
-  
-  /* Use a media query to add a breakpoint at 800px: */
-   @media screen and (max-width: 800px) {
-     .left,.main,.right {
-         width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-     } 
-  }
-  .buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-  }
-  .a{
-    width:100px;
-  }
-  h1 {
-    color: salmon;
-    text-align: center;
-    font-family: foglghten;
-    font-weight: bold;
-    font-size: 40px;
-  }
-  p {
-    color: darkblue;
-    font-family: foglghten;
-    font-size: 25px;
-  }
-  .center {
-     display: flex;
-     flex-direction: row;
-     gap: 20px;
-  }
-  .image {
-   align-items: center;
-  }
-  .container-fluid{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-  }
-  .image {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   width: 500px;
-   margin-top: 150px;
-  }
-  .intro {
-   display: flex;
-   flex-direction: column;
-   width: 70%;
-  }
-  .text {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-  }
-  .row {
-   font-size: 20px;
-   color: blue;
-   height: 100%;
-   margin-top: 50px;
-  }
   .main-class {
-  display: flex;
-  flex-direction: column;
-  background-size: cover; 
-  background-image: url('../../assets/images/dmp_index.png');
-  background-repeat: no-repeat;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../assets/images/dmp_index.png'); /* Light mode background */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    color: #333;
+    /* Ensure footer stays at the bottom */
+    justify-content: space-between; /* This ensures that footer stays at the bottom */
   }
   
-  .dark{
-  display: flex;
-  flex-direction: column;
-  background-size: cover; 
-  background-image: url('../../assets/images/section.jpg');
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  }
-  span {
-   color: red;
-  }
-  .main-content{
+  /* Main Content Centering */
+  .main-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap:30px;
-    padding: 20px;
+    padding:250px;
+    backdrop-filter: blur(6px); /* Adds a slight blur for the text to stand out */
+    border-radius: 8px;
+    flex-grow: 1; /* Allows the content to take up remaining space */
   }
-  .add{
-    margin-top:auto;
-    width:200px;
-    height: 50px;
-  }
-  .add:hover{
-    transform: translate(2px);
-  }
-  .h2light{
-    font-size:22px;;
-    color:darkblue;
+  
+  /* Heading Styling */
+  .h2light {
+    font-size: 26px;
+    color: white;
     font-weight: bold;
     margin-bottom: auto;
+    font-family: 'Poppins', sans-serif;
   }
-  .h2dark{
-    font-size:22px;;
-    color:black;
-    font-weight: bold;
-    margin-bottom: auto;
+  
+  /* Buttons Styling */
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
   }
-  h2,p,a {font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
+  
+  .btn {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 800px) {
+    .main-class, .dark {
+      background-size: contain;
+    }
+  
+    .h2light, .h2dark {
+      font-size: 20px;
+    }
+  
+    .btn {
+      width: 100px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Footer Styling */
+  footer_page {
+    margin-top: auto; /* Pushes the footer to the bottom */
+  }
   </style>
