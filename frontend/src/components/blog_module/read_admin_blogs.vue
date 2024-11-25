@@ -106,108 +106,144 @@ export default {
 </script>
 
 <style scoped>
-    body{
-        background: #efeff3;
-        margin: 0;
-        font-family: 'Raleway', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        color:#212121;
+body {
+    background: linear-gradient(to bottom, #e0eafc, #cfdef3); /* Subtle gradient background */
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #212121;
+  }
+  
+  .wrapper {
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .top {
+    background: linear-gradient(to right, #4e89ae, #43658b); /* Gradient for the header */
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  }
+  
+  .top .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .title h1 {
+    font-size: 36px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .title button {
+    background-color: #fcd34d;
+    color: #020617;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .title button:hover {
+    background-color: #ffe87d;
+    transform: scale(1.05); /* Slight pop effect */
+  }
+  
+  .content {
+    margin: -60px auto 50px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    background: #fff;
+    padding: 40px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 12px; /* Smooth, modern edges */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    animation: fadeIn 0.5s ease; /* Add a fade-in effect */
+  }
+  
+  .card h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #4e89ae;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #43658b;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #43658b;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .card {
+      padding: 20px;
+      width: 90%;
     }
-    .wrapper{
-        position: relative;
-        clear:both;
-        margin: 0 auto 75px auto;
-        width: 100%;
-        overflow: hidden;
-    }
-    .top{
-        background: #4e89ae;
-        height: 180px;
-        border-top: 20px solid #43658b;
-    }
-    
-    .top .title {
-        width: 700px;
-        margin: 38px auto 0 auto; 
-    }
-    
+  
     .title h1 {
-        font-size:24px;
-        color:#FFF;
-        font-weight:500;
+      font-size: 28px;
     }
-    
-    .content{
-        margin: -80px auto 100px;
-        padding-bottom: 20px;
+  
+    .title button {
+      padding: 8px 16px;
+      font-size: 14px;
     }
-    
-    .card{
-        position: relative;
-        background: #fff;
-        padding:50px;
-        width: 600px;
-        margin: 20px auto 0 auto;
-        box-shadow: 0 2px 4px rgba(100,100,100,.1);
+  }
+  
+  /* Keyframes for fade-in effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
     }
-    
-    .card h2 {
-        font-size:21px;
-        font-weight:500;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    .card h2 a {
-        color:#CC0000;
-        text-decoration:none;
-    }
-    
-    .card .text {
-        color:#212121;
-        margin-top:20px;
-        font-size:15px;
-        line-height:22px;
-    }
-    
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #43658b;
-        color: white;
-        text-align: center;
-    }
-    .text{
-        font-weight:bold;
-        font-family:'Courier New', Courier, monospace;
-        font-size:30px;
-    }
-    h2{
-        font-weight:bold;
-        font-size:30px;
-        color:blue;
-        font-family: 'Courier New', Courier, monospace;
-    }
-    .blogs_body{
-        font-family: Arial, sans-serif;
-        color: #333;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        background-color:#e2e8f0;
-      }
-
-      .title{
-        display: flex;
-        flex-direction: row;
-        gap:20px;
-      }
-      button{
-        width:100px;
-        color:#020617;
-        background-color: #fcd34d ;
-        height:50px;
-      }
+  }
 
 
 </style>
