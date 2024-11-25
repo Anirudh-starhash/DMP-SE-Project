@@ -3,7 +3,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <user_header :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode"  :showRequests="computedShowRequests" :showStatus="computedStatRequests" />
         
-        <h1 :class="[isDarkMode ? 'h1dark' : 'h1light']">Hey {{ name_ }} <span v-if="status == 1">(Privileged)</span> <button @click="send1" class=" button-wrapper2 add">Send Alert</button></h1>
+        <h1 class="h1light">Hey {{ name_ }} <span v-if="status == 1">(Privileged)</span> </h1>
         <div class="container">
             <div class="left-content">
                 <div class="main-content">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="button-wrapper">
-                                <button @click="back" class="add">Go Back</button>
+                                <button @click="back" :class="['btn','btn-success', 'p-3', 'lh-1']">Go Back</button>
                             </div>
                            
                 
@@ -431,17 +431,10 @@
         align-items: center;
         flex-direction: column;
         min-height: 100vh; /* Ensures the content takes up at least the full height of the viewport */
-        background-color: #e2e8f0;
+        background-color: gainsboro;
         text-align: center; /* Centers the text inside the blog items */
     }
 
-      button{
-        width:200px;
-        color:blue;
-        font-weight:bold;
-        background-color: #fcd34d ;
-        height:50px;
-      }
 
       .add{
         display: relative;

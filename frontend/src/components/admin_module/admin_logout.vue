@@ -116,7 +116,7 @@
   
   
   <style scoped>
-/* Background Styling */
+  /* Background Styling */
 .main-class {
   display: flex;
   flex-direction: column;
@@ -126,6 +126,8 @@
   background-position: center;
   min-height: 100vh;
   color: #333;
+  /* Ensure footer stays at the bottom */
+  justify-content: space-between; /* This ensures that footer stays at the bottom */
 }
 
 /* Main Content Centering */
@@ -135,10 +137,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 20px;
-  padding: 60px;
+  padding:250px;
   backdrop-filter: blur(6px); /* Adds a slight blur for the text to stand out */
   border-radius: 8px;
+  flex-grow: 1; /* Allows the content to take up remaining space */
 }
 
 /* Heading Styling */
@@ -204,4 +206,10 @@
     font-size: 14px;
   }
 }
+
+/* Footer Styling */
+footer_page {
+  margin-top: auto; /* Pushes the footer to the bottom */
+}
+
 </style>

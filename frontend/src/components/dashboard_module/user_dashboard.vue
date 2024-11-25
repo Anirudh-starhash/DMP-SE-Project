@@ -1,22 +1,22 @@
 <template>
-    <div :class="[isDarkMode ? 'dark' : 'main-class']">
+    <div class="main-class">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
      
 
         <user_header :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode"  :showRequests="computedShowRequests" :showStatus="computedStatRequests" />
         
-        <h1 :class="[isDarkMode ? 'h1dark' : 'h1light']">Hey {{ name_ }} <span v-if="status == 1">(Privileged)</span> <button @click="send1" class=" button-wrapper2 add">Send Alert</button></h1>
+        <h1 class="h1light">Hey {{ name_ }} <span v-if="status == 1">(Privileged)</span> </h1>
         <div class="y">
-            <p>If You want to Change Password -> &nbsp;</p>
+            <h3>If You want to Change Password -> &nbsp;</h3>
             <a href="/change_password">
-              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
+              <button :class="['btn','btn-success', 'p-3', 'lh-1']">Change Password</button>
             </a>
         </div>
         <div class="container">
             <div class="left-content">
                 <div class="main-content">
                     <div class="blogs">
-                        <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+                        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
                         <div class="wrapper">
                             <div class="top">
                                 <div class="title"><h1>Blogs created by Admin</h1></div>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="button-wrapper">
-                                <button @click="create_blog" class="add">Create BLOGS</button>
+                                <button @click="create_blog" :class="['btn','btn-success', 'p-3', 'lh-1']">Create Blog</button>
                             </div>
                            
                 
@@ -283,6 +283,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-size:20px;
     }
     .row {
         font-size: 20px;
@@ -295,14 +296,6 @@
         flex-direction: column;
         background-size: cover; 
         background-image: url('../../assets/images/dmp_index.png');
-        background-repeat: no-repeat;
-        min-height: 100vh;
-    }
-    .dark {
-        display: flex;
-        flex-direction: column;
-        background-size: cover; 
-        background-image: url('../../assets/images/section.jpg');
         background-repeat: no-repeat;
         min-height: 100vh;
     }
@@ -337,18 +330,6 @@
     .add:hover {
         transform: translate(2px);
     }
-    .h2light {
-        font-size: 22px;
-        color: darkblue;
-        font-weight: bold;
-        margin-bottom: auto;
-    }
-    .h2dark {
-        font-size: 22px;
-        color: black;
-        font-weight: bold;
-        margin-bottom: auto;
-    }
     .h1light {
         padding: 20px;
         font-size: 32px;
@@ -364,14 +345,7 @@
         margin-bottom: auto;
     }
    
-    h1, h2, p, a {
-        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; 
-        font-size: 25px; 
-        font-style: normal; 
-        font-variant: normal; 
-        font-weight: 700; 
-        line-height: 26.4px;
-    }
+  
     .custom-select {
         width: 100%;
         max-width: 300px;
@@ -425,7 +399,7 @@
     }
     
     .card h2 {
-        font-size:21px;
+        font-size:40px;
         font-weight:500;
     }
     
@@ -440,6 +414,9 @@
         font-size:15px;
         line-height:22px;
     }
+    .card p{
+        font-size:20px;
+    }
     
     footer {
         position: fixed;
@@ -453,14 +430,9 @@
     .text{
         font-weight:bold;
         font-family:'Courier New', Courier, monospace;
-        font-size:30px;
+        font-size:20px;
     }
-    h2{
-        font-weight:bold;
-        font-size:30px;
-        color:blue;
-        font-family: 'Courier New', Courier, monospace;
-    }
+   
     .blogs {
         font-family: Arial, sans-serif;
         color: #333;
@@ -469,25 +441,25 @@
         align-items: center;
         flex-direction: column;
         min-height: 100vh; /* Ensures the content takes up at least the full height of the viewport */
-        background-color: #e2e8f0;
+        background-color: gainsboro;
         text-align: center; /* Centers the text inside the blog items */
     }
-
-      button{
-        width:200px;
-        color:blue;
+    h2{
         font-weight:bold;
-        background-color: #fcd34d ;
-        height:50px;
-      }
+        font-size:20px;
+        color:blue;
+        font-family: 'Courier New', Courier, monospace;
+    }
 
-      .add{
+     
+
+    .add{
         display: relative;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      }
-      .button-wrapper {
+    }
+    .button-wrapper {
         display: flex;
         justify-content: center;
         width: 100%;
@@ -495,5 +467,11 @@
     .add:hover{
         transform: translate(10px);
     }
+    h3{
+        color:white;
+        font-size:16px;
+    }
+
+
 
 </style >
