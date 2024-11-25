@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request,Flask, send_from_directory, render_template,redirect
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity,unset_jwt_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
-from application.models import User,User_issue,DisasterAnalysis
+from application.models import User,User_issue,DisasterAnalysis,Admin
 from application.database import db
 from datetime import timedelta,datetime
 from flask import current_app as app,Flask
@@ -352,10 +352,14 @@ def change_password():
     data=request.get_json()
     email=data.get("email")
     id=data.get("id")
+    role=data.get("role")
     print(id)
     password=data.get("new_password")
     old_password=data.get("old_password")
-    u=db.session.execute(db.Select(User).where(User.user_id==id)).scalar()
+    if role=="user":
+        u=db.session.execute(db.Select(User).where(User.user_id==id)).scalar()
+    else:
+        u=db.session.execute(db.select(Admin).where(Admin.admin_id==id)).scalar()
     if check_password_hash(u.password,old_password):
         u.password=generate_password_hash(password,method='pbkdf2:sha256',salt_length=8)
         u.email=email
