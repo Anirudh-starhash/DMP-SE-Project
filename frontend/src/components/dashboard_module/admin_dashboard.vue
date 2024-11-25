@@ -7,7 +7,7 @@
           <h1 :class="[isDarkMode ? 'h1dark' : 'h1light']" class="y">Hey Admin</h1>
           <div class="y">
             <a href="/change_password">
-              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-3', 'lh-1']">Change Password</button>
+              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-success', 'p-3', 'lh-1']">Change Password</button>
             </a>
           </div>
 
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="button-wrapper">
-                                <button @click="create_blog" class="add">Create BLOGS</button>
+                                <button @click="create_blog" :class="['btn', isDarkMode ? 'btn-dark' : 'btn-success', 'p-3', 'lh-1','add']">Create BLOGS</button>
                             </div>
                            
                 
@@ -171,81 +171,27 @@
 
 <style scoped>
 
-   .left,.right {
-     float: left;
-     width: 20%; /* The width is 20%, by default */
-  } 
-  #add{ 
-    width: 70px; 
-    height: 70px; 
-    padding: 10px 16px; 
-    border-radius: 35px; 
-    font-size: 30px; 
-    text-align: center; 
-} 
-.y{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.x {
+  color: #fed7aa;
 }
-  #add:hover{
-    transform: translate(2px);
-    background-color: blue;
-    color: white;
-  }
-
-  .main {
-    float: left;
-    width: 60%; /* The width is 60%, by default */
-  }
-
-  /* Use a media query to add a breakpoint at 800px: */
-   @media screen and (max-width: 800px) {
-     .left,.main,.right {
-         width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-     } 
-  }
- .main-class {
-    display: flex;
-    flex-direction: column;
-   background-size: cover; 
-   background-image: url('../../assets/images/dmp_index.png');
-   background-repeat: no-repeat;
-   min-height: 100vh;
- }
-
- .dark{
-  display: flex;
-    flex-direction: column;
-   background-size: cover; 
-   background-image: url('../../assets/images/section.jpg');
-   background-repeat: no-repeat;
-   min-height: 100vh;
- }
- .left-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; /* Align items vertically centered */
-  width:100%;
+.x1 {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
 }
-.main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 40px;
-    padding-bottom: 100px;
-    padding-top: 10px;
-    width:100%;
+span{
+color:black;
+}
+.x:hover {
+  background-color: transparent !important;
+}
+.left, .right {
+  float: left;
+  width: 20%; /* The width is 20%, by default */
 }
 .add {
-    margin-top: auto;
-    width: 200px;
-    height: 50px;
+  margin-top: auto;
 }
 .x345{
   display: flex;
@@ -254,165 +200,280 @@
   align-items: center;
   gap:30px;
 }
+.button-wrapper2{
+  width:100px;
+  font-size:20px;
+}
+#add { 
+  width: 70px; 
+  height: 70px; 
+  padding: 10px 16px; 
+  border-radius: 35px; 
+  font-size: 30px; 
+  text-align: center; 
+} 
+.y{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#add:hover {
+  transform: translate(2px);
+  background-color: blue;
+  color: white;
+}
+.x {
+  height: 40px;
+  width: 100px;
+}
+.x:hover {
+  transform: translate(2px);
+  background-color: darkolivegreen;
+  color: aliceblue;
+}
+.main {
+  float: left;
+  width: 60%; /* The width is 60%, by default */
+}
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 800px) {
+  .left, .main, .right {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  } 
+}
+h1 {
+  color: salmon;
+  text-align: center;
+  font-family: foglghten;
+  font-weight: bold;
+  font-size: 40px;
+}
+p {
+  color: darkblue;
+  font-family: foglghten;
+  font-size: 25px;
+}
+.center {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.image {
+  align-items: center;
+}
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin-top: 150px;
+}
+.intro {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:20px;
+}
+.row {
+  font-size: 20px;
+  color: blue;
+  height: 100%;
+  margin-top: 50px;
+}
+.main-class {
+  display: flex;
+  flex-direction: column;
+  background-size: cover; 
+  background-image: url('../../assets/images/dmp_index.png');
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.container {
+  display: flex;
+  
+}
+.left-content {
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center; /* Align items vertically centered */
+width:100%;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  padding-bottom: 100px;
+  padding-top: 10px;
+  width:100%;
+}
+.add {
+  margin-top: auto;
+  width: 200px;
+  height: 50px;
+}
 .add:hover {
-    transform: translate(2px);
-}
-.h2light {
-    font-size: 22px;
-    color: darkblue;
-    font-weight: bold;
-    margin-bottom: auto;
-}
-.h2dark {
-    font-size: 22px;
-    color: black;
-    font-weight: bold;
-    margin-bottom: auto;
+  transform: translate(2px);
 }
 .h1light {
-    padding: 20px;
-    font-size: 32px;
-    color: red;
-    font-weight: bold;
-    margin-bottom: auto;
+  padding: 20px;
+  font-size: 32px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: auto;
 }
 .h1dark {
-    padding: 20px;
-    font-size: 32px;
-    color: darkblue;
-    font-weight: bold;
-    margin-bottom: auto;
+  padding: 20px;
+  font-size: 32px;
+  color: darkblue;
+  font-weight: bold;
+  margin-bottom: auto;
 }
 
-h1, h2, p, a {
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; 
-    font-size: 25px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px;
-}
+
 .custom-select {
-    width: 100%;
-    max-width: 300px;
+  width: 100%;
+  max-width: 300px;
 }
 .co{
-  width:300px;
+width:300px;
 }
 body{
-    background: #efeff3;
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    color:#212121;
+  background: #efeff3;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color:#212121;
 }
 .wrapper{
-    position: relative;
-    clear:both;
-    margin: 0 auto 75px auto;
-    width: 100%;
-    overflow: hidden;
+  position: relative;
+  clear:both;
+  margin: 0 auto 75px auto;
+  width: 100%;
+  overflow: hidden;
 }
 .top{
-    background: #4e89ae;
-    height: 180px;
-    border-top: 20px solid #43658b;
+  background: #4e89ae;
+  height: 180px;
+  border-top: 20px solid #43658b;
 }
 
 .top .title {
-    width: 700px;
-    margin: 38px auto 0 auto; 
+  width: 700px;
+  margin: 38px auto 0 auto; 
 }
 
 .title h1 {
-    font-size:24px;
-    color:#FFF;
-    font-weight:500;
+  font-size:24px;
+  color:#FFF;
+  font-weight:500;
 }
 
 .content{
-    margin: -80px auto 100px;
-    padding-bottom: 20px;
+  margin: -80px auto 100px;
+  padding-bottom: 20px;
 }
 
 .card{
-    position: relative;
-    background: #fff;
-    padding:50px;
-    width: 600px;
-    margin: 20px auto 0 auto;
-    box-shadow: 0 2px 4px rgba(100,100,100,.1);
+  position: relative;
+  background: #fff;
+  padding:50px;
+  width: 600px;
+  margin: 20px auto 0 auto;
+  box-shadow: 0 2px 4px rgba(100,100,100,.1);
 }
 
 .card h2 {
-    font-size:21px;
-    font-weight:500;
+  font-size:40px;
+  font-weight:500;
 }
 
 .card h2 a {
-    color:#CC0000;
-    text-decoration:none;
+  color:#CC0000;
+  text-decoration:none;
 }
 
 .card .text {
-    color:#212121;
-    margin-top:20px;
-    font-size:15px;
-    line-height:22px;
+  color:#212121;
+  margin-top:20px;
+  font-size:15px;
+  line-height:22px;
+}
+.card p{
+  font-size:20px;
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #43658b;
-    color: white;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #43658b;
+  color: white;
+  text-align: center;
 }
 .text{
-    font-weight:bold;
-    font-family:'Courier New', Courier, monospace;
-    font-size:30px;
+  font-weight:bold;
+  font-family:'Courier New', Courier, monospace;
+  font-size:20px;
+}
+
+.blogs {
+  font-family: Arial, sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the content takes up at least the full height of the viewport */
+  background-color: gainsboro;
+  text-align: center; /* Centers the text inside the blog items */
 }
 h2{
-    font-weight:bold;
-    font-size:30px;
-    color:blue;
-    font-family: 'Courier New', Courier, monospace;
-}
-.blogs {
-    font-family: Arial, sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures the content takes up at least the full height of the viewport */
-    background-color: #e2e8f0;
-    text-align: center; /* Centers the text inside the blog items */
+  font-weight:bold;
+  font-size:20px;
+  color:blue;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-  button{
-    width:200px;
-    color:blue;
-    font-weight:bold;
-    background-color: #fcd34d ;
-    height:50px;
-  }
 
-  .add{
-    display: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .button-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+
+.add{
+  display: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 .add:hover{
-    transform: translate(10px);
+  transform: translate(10px);
 }
+h3{
+  color:white;
+  font-size:16px;
+}
+span{
+  color:white;
+}
+
 </style>
