@@ -55,6 +55,7 @@ def admin_login():
         data=request.get_json()
         email=data.get("email")
         password=data.get("password")
+        print(password)
         
         lib=db.session.execute(db.select(Admin).where(Admin.admin_email==email)).scalar()
         if lib is None:
@@ -62,7 +63,7 @@ def admin_login():
                 'message':'Incorrect Credentials Admin Does\'nt exist with this email id', 
             }),201
         
-        if lib.password!=password:
+        if not check_password_hash(lib.password,password):
             return jsonify({
                 'message':'Wrong Password!', 
             }),202
