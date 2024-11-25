@@ -262,20 +262,6 @@
      float: left;
      width: 20%; /* The width is 20%, by default */
   } 
-  #add{ 
-    width: 70px; 
-    height: 70px; 
-    padding: 10px 16px; 
-    border-radius: 35px; 
-    font-size: 30px; 
-    text-align: center; 
-  } 
-  #add:hover{
-    transform: translate(2px);
-    background-color: blue;
-    color: white;
-  }
-  
   .main {
     float: left;
     width: 60%; /* The width is 60%, by default */
@@ -313,77 +299,88 @@
     gap:40px;
     padding: 60px;
   }
-  .h2light{
-    font-size:22px;;
-    color:darkblue;
-    font-weight: bold;
-    margin-bottom: auto;
-  }
-  .h2dark{
-    font-size:22px;;
-    color:black;
-    font-weight: bold;
-    margin-bottom: auto;
-  }
-  
-  h2,p,a {font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
-  table {
-    width: 90%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    }
-    th, td {
-    padding: 3px 8px;
-    border: 1px solid #ddd;
-    text-align: left;
-    }
-    th {
-    background-color: #009879;
-    color: #fff;
-    text-transform: uppercase;
-    }
-    tr:nth-child(even) {
-    background-color: #f2f2f2;
-    }
-    tr:hover {
-    background-color: #ddd;
-    }
-    p {
-      color: darkblue;
-      font-size: 18px;
-    }
-    .x3{
-      font-size: 14px;
-    }
-    .buttons{
-      display:flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap:20px;
-    }
-  
-    .x1,.x2{
-      color: #fed7aa;
-      text-align: center;
-      height: 30px;
-      width: 100px;
-      font-size: 16px;
-    }
-    .x1:hover{
-      transform: translate(10px);
-    }
-    .x2{
-      color:darkblue;
-    }
-    .blue{
-      color:blue;
-    }
-    .red{
-      color:red;
-    }
-    .green{
-      color:green;
-    }
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e8eaf6; /* Light violet background for the entire page */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensures the border-radius applies */
+  margin: 20px auto; /* Center the table */
+}
+
+th, td {
+  padding: 12px 16px; /* Spacious padding for better readability */
+  border: none; /* Removed default borders */
+  text-align: center; /* Centered content for consistency */
+  font-family: 'Arial', sans-serif; /* Clean and modern font */
+}
+
+th {
+  background: linear-gradient(45deg, #6a1b9a, #7b1fa2); /* Gradient header */
+  color: #fff; /* White text for contrast */
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Slight spacing for a modern look */
+  font-size: 16px; /* Larger font for headers */
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(106, 27, 154, 0.1); /* Soft violet for alternating rows */
+}
+
+tr:hover {
+  background-color: rgba(106, 27, 154, 0.2); /* Highlight on hover */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+td {
+  font-size: 14px; /* Slightly smaller font for cell content */
+  color: #4e4e4e; /* Neutral dark gray text */
+}
+
+p {
+  color: #6a1b9a; /* Match text color to the violet theme */
+  font-weight: bold;
+}
+
+.buttons a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #e1bee7; /* Light violet button background */
+  color: #4a148c; /* Deep violet text for buttons */
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttons a:hover {
+  background-color: #ba68c8; /* Darker violet on hover */
+  transform: scale(1.05); /* Subtle hover scaling */
+}
+
+.x1:hover {
+  transform: translateX(5px); /* Smooth hover movement for icons */
+}
+h2{
+  color:white;
+}
+
   </style>

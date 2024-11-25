@@ -1,30 +1,29 @@
 <template>
-    <div :class="[isDarkMode ? 'dark' : 'main-class']">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-      
-      <!-- Header -->
+  <div class="wrapper">
+    <!-- All page content -->
+    <div class="content">
       <librarian_header :showSections="false" :showLib="false" :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode" />
   
       <div class="main-content">
         <h2 :class="[isDarkMode ? 'h2dark' : 'h2light']">{{ stats_status }}</h2>
         
-        <!-- Conditionally render PieChart when section_info has data -->
-         <div class="com">
+        <div class="com">
           <PieChart v-if="Object.keys(section_info).length" :sectionInfo="section_info" />
           <HeatMap v-if="Object.keys(section_info).length" :sectionInfo="section_info" />
           <Histogram v-if="Object.keys(section_info).length" :sectionInfo="section_info" />
           <BarChart v-if="Object.keys(section_info).length" :sectionInfo="section_info" />
         </div>
   
-        <div @click="getreport">
+        <div class="action-button" @click="getreport">
           <button class="btn btn-primary">Get Report</button>
         </div>
-       
       </div>
-  
-      <!-- Footer -->
-      <footer_page/>
     </div>
+  
+    <!-- Footer -->
+    <footer_page />
+  </div>
+  
   </template>
   
   <script scoped>
@@ -104,23 +103,15 @@
   </script>
   
   <style scoped>
-  .main-class {
+  .main-content {
     display: flex;
-    flex-direction: column;
     background-size: cover;
     background-image: url('../../assets/images/dmp_index.png');
     background-repeat: no-repeat;
     min-height: 100vh;
   }
   
-  .dark {
-    display: flex;
-    flex-direction: column;
-    background-size: cover;
-    background-image: url('../../assets/images/section.jpg');
-    background-repeat: no-repeat;
-    min-height: 100vh;
-  }
+ 
   
   .main-content {
     display: flex;
@@ -132,27 +123,9 @@
     padding: 60px;
   }
   
-  .h2light {
-    font-size: 22px;
-    color: darkblue;
+  h2{
+    color:white;
     font-weight: bold;
-    margin-bottom: auto;
-  }
-  
-  .h2dark {
-    font-size: 22px;
-    color: black;
-    font-weight: bold;
-    margin-bottom: auto;
-  }
-  
-  h2, p, a {
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-    font-size: 25px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 700;
-    line-height: 26.4px;
   }
   
   .pie-chart,.bar-chart{
