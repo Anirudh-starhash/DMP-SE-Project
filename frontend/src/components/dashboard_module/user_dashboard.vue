@@ -471,6 +471,9 @@
         color:white;
         font-size:16px;
     }
+    span{
+        color:white;
+    }
 
 
 
