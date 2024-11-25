@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request,Flask, send_from_directory, render_template,redirect
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity,unset_jwt_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
-from application.models import User,User_issue,DisasterAnalysis,Admin
+from application.models import User,User_issue,DisasterAnalysis,Admin,Blog,Reviews
 from application.database import db
 from datetime import timedelta,datetime
 from flask import current_app as app,Flask
@@ -374,3 +374,27 @@ def change_password():
             'msg':'Password not same'
         }),201
         
+        
+@user_blueprint.route("/getAllUserDetails",methods=['GET','POST'])
+def getAllUserDetails():
+    user_list=[]
+    u=db.session.execute(db.select(User)).scalars().all()
+    for x in u:
+        bi=db.session.execute(db.select(Blog).where(Blog.user_id==x.user_id)).scalars().all()
+        bi_count=len(bi)
+        re=db.session.execute(db.select(Reviews).where(Reviews.user_id==x.user_id)).scalars().all()
+        re_count=len(re)
+        
+        user_list.append({
+            'user_id':x.user_id,
+            'name':x.user_name,
+            'email':x.user_email,
+            'blog_count':bi_count,
+            'review_count':re_count        
+        })    
+        
+    
+    return jsonify({
+        'user_list':user_list
+    }),200
+    

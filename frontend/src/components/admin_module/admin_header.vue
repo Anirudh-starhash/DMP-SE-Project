@@ -8,7 +8,7 @@
         </div>
         <div class="right">
           <p class="nav-item" v-if="showRequests" @click="requests">Requests</p>
-          <p class="nav-item" v-if="showMonitor" @click="monitor">Monitor</p>
+          <p class="nav-item" v-if="showMonitor" @click="monitor_page">Monitor</p>
           <p class="nav-item" v-if="showStats" @click="stats">Stats</p>
           <p class="nav-item logout" @click="logout">Logout</p>
         </div>
@@ -31,7 +31,7 @@ export default {
     logout() { this.$router.push({ path: '/logout_page' }); },
     requests() { this.$router.push("/request_page"); },
     stats() { this.$router.push("/admin_stats_page"); },
-    monitor() { this.$router.push("/admin_monitor"); }
+    monitor_page() { this.$router.push("/monitor_page"); }
   }
 };
 </script>
