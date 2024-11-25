@@ -3,7 +3,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   
          <!-- header-->
-          <librarian_header :showMonitor="false" :showLib="false" :isDarkMode="isDarkMode" @toggleDarkMode="toggleDarkMode" />
+         <librarian_header :showMonitor="false" :showLib="false" />
   
   
         <div class="main-content">
@@ -116,85 +116,92 @@
   
   
   <style scoped>
-  
-   .left,.right {
-     float: left;
-     width: 20%; /* The width is 20%, by default */
-  } 
-  .buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-  }
-  .a{
-    width:100px;
+/* Background Styling */
+.main-class {
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../assets/images/dmp_index.png'); /* Light mode background */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* Main Content Centering */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 60px;
+  backdrop-filter: blur(6px); /* Adds a slight blur for the text to stand out */
+  border-radius: 8px;
+}
+
+/* Heading Styling */
+.h2light {
+  font-size: 26px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Buttons Styling */
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 800px) {
+  .main-class, .dark {
+    background-size: contain;
   }
 
-  #add{ 
-    width: 70px; 
-    height: 70px; 
-    padding: 10px 16px; 
-    border-radius: 35px; 
-    font-size: 30px; 
-    text-align: center; 
-  } 
-  #add:hover{
-    transform: translate(2px);
-    background-color: blue;
-    color: white;
+  .h2light, .h2dark {
+    font-size: 20px;
   }
-  
-  .main {
-    float: left;
-    width: 60%; /* The width is 60%, by default */
+
+  .btn {
+    width: 100px;
+    font-size: 14px;
   }
-  
-  /* Use a media query to add a breakpoint at 800px: */
-   @media screen and (max-width: 800px) {
-     .left,.main,.right {
-         width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-     } 
-  }
-  .main-class {
-    display: flex;
-    flex-direction: column;
-   background-size: cover; 
-   background-image: url('../../assets/images/dmp_index.png');
-   background-repeat: no-repeat;
-   min-height: 100vh;
-  }
-  
-  .dark{
-  display: flex;
-    flex-direction: column;
-   background-size: cover; 
-   background-image: url('../../assets/images/section.jpg');
-   background-repeat: no-repeat;
-   min-height: 100vh;
-  }
-  .main-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap:40px;
-    padding: 60px;
-  }
-  .h2light{
-    font-size:22px;;
-    color:darkblue;
-    font-weight: bold;
-    margin-bottom: auto;
-  }
-  .h2dark{
-    font-size:22px;;
-    color:black;
-    font-weight: bold;
-    margin-bottom: auto;
-  }
-  
-  h2,p,a {font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 25px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
-  
-  </style>
+}
+</style>

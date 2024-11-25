@@ -1,5 +1,5 @@
 <template>
-  <div :class="['abc', { dark: isDarkMode }]">
+  <div class="abc">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -12,12 +12,6 @@
     <div class="main">
       <h1 class="title">
         ADMIN SIGN IN
-        <button @click="toggleDarkMode" class="btn btn-primary mt-3 toggle-btn">
-          <i v-if="isDarkMode" class="fas fa-sun"></i>
-          <i v-else class="fas fa-moon"></i>
-        </button>
-        <span class="toggle-text x11" v-if="isDarkMode"> &nbsp; &nbsp; Light Mode!</span>
-        <span class="toggle-text x11" v-else> &nbsp; &nbsp; Dark Mode!</span>
       </h1>
 
       <div class="row">
@@ -46,7 +40,7 @@
                 id="exampleInputPassword1"
                 v-model="password"
               />
-              <span class="input-group-text" id="togglePassword">
+              <span class="input-group-text toggle-icon" id="togglePassword">
                 <i class="fas fa-eye"></i>
               </span>
             </div>
@@ -132,87 +126,64 @@ export default {
   align-items: center;
   min-height: 100vh;
   background: url("../../assets/images/dmp_index.png") no-repeat center center/cover;
-  color: var(--text-color);
+  color: var(--text-color, #333);
   transition: all 0.3s ease;
 }
-
-.dark {
-  background: #2c2c2c;
-  background-image: none;
+h1{
+  color:white;
 }
 
 /* Typography */
 .title {
   font-size: 42px;
   font-weight: bold;
-  color: var(--text-color);
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Form */
 .row {
-  background: var(--form-bg-color, rgba(0, 0, 0, 0.6));
+  background: ghostwhite;
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  width: 450px;
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px yellow;
+  width: 500px;
+  max-width: 100%;
+  transition: all 0.5s ease;
 }
 
-.dark .row {
-  background: rgba(0, 0, 0, 0.9);
-  box-shadow: 0 0 25px rgba(255, 255, 0, 0.7); /* Yellow shadow in dark mode */
-}
 
-p,h1{
-  color:white;
-}
-.dark p{
- 
-  color:white;
-}
-.dark h1{
-  color:gainsboro;
-}
-.x11{
-  font-size:10px;
-}
-/* Glowing inputs */
+/* Glowing Inputs */
 .glowing-input {
-  border: 2px solid;
+  border: 2px solid #ddd;
   padding: 10px;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .glowing-input:focus {
-  box-shadow: 0 0 10px 2px var(--focus-glow-color);
-  border-color: var(--focus-glow-color);
+  box-shadow: 0 0 10px 2px var(--focus-glow-color, blue);
+  border-color: var(--focus-glow-color, blue);
 }
 
 .dark .glowing-input:focus {
   --focus-glow-color: white; /* White glow in dark mode */
 }
 
-.glowing-input:focus {
-  --focus-glow-color: blue; /* Blue glow in light mode */
-}
-
 /* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px; /* Reduced gap between buttons */
+  gap: 10px;
   margin-top: 20px;
 }
 
 .action-btn,
 .login-btn {
   border-radius: 20px;
-  padding: 10px 30px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 .action-btn:hover {
@@ -221,6 +192,21 @@ p,h1{
 }
 
 .login-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
+
+/* Password Toggle Icon */
+.toggle-icon {
+  cursor: pointer;
+}
+
+.toggle-icon i {
+  font-size: 18px;
+  color: #555;
+}
+p{
+  font-weight: bold;
+  color:black;
+}
+
 </style>
