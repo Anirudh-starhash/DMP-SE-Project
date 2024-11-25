@@ -49,7 +49,8 @@
          this.isDarkMode = isDark;
        },
        back(){
-            this.$router.push("/user_dashboard/`${id}`");
+            this.id=JSON.parse(localStorage.getItem("info")).id
+            this.$router.push(`/user_dashboard/${this.id}`);
         },
         async logout(){
             const access_token=localStorage.getItem("access_token")
