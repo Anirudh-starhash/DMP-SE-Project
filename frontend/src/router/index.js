@@ -34,6 +34,7 @@ import read_admin_review from '@/components/reviews_module/read_admin_review.vue
 import read_review from '@/components/reviews_module/read_review.vue'
 import change_password from '@/components/other_module/change_password.vue'
 import monitor_page from '@/components/other_module/monitor_page.vue'
+import forgot_password from '@/components/other_module/forgot_password.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -209,6 +210,11 @@ const router = createRouter({
       path:'/change_password',
       name:'change_password',
       component:change_password
+    },
+    {
+      path:'/forgot_password',
+      name:'forgot_password',
+      component:forgot_password
     },
     {
       path:'/monitor_page',

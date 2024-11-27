@@ -8,7 +8,6 @@
           </div>
           <div class="right">
             <p class="nav-item" v-if="showOtherUsers" @click="otherusers">Other-Users-Page</p>
-            <p class="nav-item" v-if="showMonitor" @click="monitor">Monitor</p>
             <p class="nav-item" v-if="showStats" @click="stats">Stats</p>
             <p class="nav-item" v-if="showRequests" @click="requests_form">Requests-Admin</p>
             <p class="nav-item" v-if="showStatus" @click="status">Privileged Status</p>

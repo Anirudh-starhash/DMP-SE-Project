@@ -1,14 +1,23 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "anirudh pabbaraju",
   "license": "ISC",
-  "description": "",
+  "description": "backend for blob website",
   "dependencies": {
     "backend": "file:"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anirudh-starhash/DMP-SE-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Anirudh-starhash/DMP-SE-Project/issues"
+  },
+  "homepage": "https://github.com/Anirudh-starhash/DMP-SE-Project#readme"
 }

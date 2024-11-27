@@ -4,7 +4,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <div class="main">
          
-         <h1>CHANGE PASSWORD PAGE</h1>
+         <h1>FORGOT PASSWORD PAGE</h1>
          <h2>{{message}}</h2>
 
          <div class="row">
@@ -14,14 +14,6 @@
               <div class="input-group">
                 <input type="email" class="form-control" id="email" v-model="email">
               </div>
-            </div>
-            <div class="mb-11 password-container">
-              <label for="exampleInputPassword1" class="form-label"><p class="x">Old Password</p></label>
-              <div class="input-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" v-model="old_password">
-                <span class="input-group-text" id="togglePassword"><i class="fas fa-eye"></i></span>
-              </div>
-             
             </div>
             <div class="mb-11 password-container">
               <label for="exampleInputPassword2" class="form-label"><p class="x">New Password</p></label>
@@ -37,13 +29,16 @@
                 <span class="input-group-text" id="togglePassword2"><i class="fas fa-eye"></i></span>
               </div>
             </div>
+            <div class="mb-11 password-container">
+              <label for="exampleInputPassword1" class="form-label"><p class="x">Enter OTP</p></label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" v-model="otp">
+                <span class="input-group-text" id="togglePassword"><i class="fas fa-eye"></i></span>
+              </div>
+            </div>
+            <p>An OTP Sent to your email (Please Enter It)</p>
             <button type="submit" class="btn btn-primary">Change Password</button>
           </form> 
-          <div>
-            <a @click="Forgot_password">
-              <button :class="['btn', isDarkMode ? 'btn-dark' : 'btn-outline-primary', 'p-6', 'lh-1']">Forgot Password</button>
-            </a>
-          </div>
         </div> 
 
         <div class="buttons">
@@ -64,7 +59,6 @@
   <script>
   import axios from 'axios'
   import { useRouter } from 'vue-router';
-import Forgot_password from './forgot_password.vue';
   export default {
    name:'change_password',
    setup(){
@@ -73,7 +67,7 @@ import Forgot_password from './forgot_password.vue';
    },
    data(){
     return {
-      message:'Welcome to Change Password Page',
+      message:'Welcome to Forgot Password Page',
       id:'',
       email_error:"",
       isDarkMode: false,
@@ -81,7 +75,9 @@ import Forgot_password from './forgot_password.vue';
       new_password:"",
       confirm_new:"",
       email:'',
-      role:''
+      role:'',
+      otp:'',
+      original_otp:''
     }
    },
    async mounted() {
@@ -115,8 +111,17 @@ import Forgot_password from './forgot_password.vue';
         // Toggle the eye slash icon
         this.querySelector('i').classList.toggle('fa-eye-slash');
       });
+    
+  
+     
 
       this.email=JSON.parse(localStorage.getItem("info")).email
+
+      const r=await axios.post(`http://127.0.0.1:5000/api/sendOtp/${this.email}`);
+      if(r.status==200){
+        this.original_otp=r.data.original_otp;
+
+      }
 
 
     },
@@ -125,40 +130,43 @@ import Forgot_password from './forgot_password.vue';
         this.isDarkMode = !this.isDarkMode;
       },
       async changePassword(){
-        if(this.new_password==this.old_password){
-          alert("Old Password and New Password can't be same");
-          this.new_password=""
-          this.confirm_new=""
-        }
         if(this.new_password==this.confirm_new){
-          const r=await axios.post("http://127.0.0.1:5000/api/change_password",
-            JSON.stringify({
-              'id':JSON.parse(localStorage.getItem("info")).id,
-              'new_password':this.new_password,
-              'old_password':this.old_password,
-              'email':this.email,
-              'role':JSON.parse(localStorage.getItem("info")).role
-            }),
-            {
-              headers:{
-                'Content-Type':'application/json'
-              }
-            }
-          );
+                if(this.otp==this.original_otp){
+                    const r=await axios.post("http://127.0.0.1:5000/api/change_password2",
+                        JSON.stringify(
+                            {
+                                'id':JSON.parse(localStorage.getItem("info")).id,
+                                'new_password':this.new_password,
+                                'email':this.email,
+                                'role':JSON.parse(localStorage.getItem("info")).role
+                            
+                            }
+                        ),
+                        {
+                            headers:{
+                                'Content-Type':'application/json'
+                            }
+                        }
+                    );
 
-          if(r.status==200){
-            this.id=JSON.parse(localStorage.getItem("info")).id
-            this.role=JSON.parse(localStorage.getItem("info")).role
-            alert('Password Successfully changed!');
-            if(this.role=="user") this.$router.push(`/user_dashboard/${this.id}`)
-            else this.$router.push({path:'/admin_dashboard'})
-          }
-          else if(r.status==201){
-            alert('Your Password is Wrong enter correct one')
-            this.old_password="";
-            this.new_password="";
-            this.confirm_new=""
-          }
+                    if(r.status==200){
+                        this.id=JSON.parse(localStorage.getItem("info")).id
+                        this.role=JSON.parse(localStorage.getItem("info")).role
+                        alert('Password Successfully changed!');
+                        if(this.role=="user") this.$router.push(`/user_dashboard/${this.id}`)
+                        else this.$router.push({path:'/admin_dashboard'})
+                    }
+                    else if(r.status==201){
+                        alert('Your Password is Wrong enter correct one')
+                        this.old_password="";
+                        this.new_password="";
+                        this.confirm_new=""
+                    }
+                }
+                else{
+                    alert("OTP is NOT SAME AS WHAT SENT TO YOUR MAIL REFRESH THE PAGE FOR RECEIVING NEW OTP ENTER THAT!")
+                }
+          
         }
         else{
           alert("Your new_password and confirm aren't same")
@@ -166,9 +174,6 @@ import Forgot_password from './forgot_password.vue';
           this.confirm_new=""
 
         }
-      },
-      Forgot_password(){
-        this.$router.push("/forgot_password")
       }
     }
   }
@@ -207,7 +212,7 @@ import Forgot_password from './forgot_password.vue';
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 8px 15px yellow;
-    width: 500px;
+    width: 600px;
     max-width: 100%;
     transition: all 0.5s ease;
   }

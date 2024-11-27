@@ -374,6 +374,30 @@ def change_password():
             'msg':'Password not same'
         }),201
         
+@user_blueprint.route("/change_password2",methods=['GET','POST'])
+def change_password2():
+    data=request.get_json()
+    email=data.get("email")
+    id=data.get("id")
+    role=data.get("role")
+    print(id)
+    password=data.get("new_password")
+    if role=="user":
+        u=db.session.execute(db.Select(User).where(User.user_id==id)).scalar()
+    else:
+        u=db.session.execute(db.select(Admin).where(Admin.admin_id==id)).scalar()
+        u.password=generate_password_hash(password,method='pbkdf2:sha256',salt_length=8)
+        u.email=email
+        db.session.commit()
+        
+    return jsonify({
+        'msg':'Password changed! Successful!'
+    }),200
+        
+    
+        
+    
+        
         
 @user_blueprint.route("/getAllUserDetails",methods=['GET','POST'])
 def getAllUserDetails():
@@ -397,4 +421,46 @@ def getAllUserDetails():
     return jsonify({
         'user_list':user_list
     }),200
+    
+import random
+
+def send_email1(email,random_number):
+    sender_email = "anirudhpabbaraju1103@gmail.com"
+    password = "atnipcvnvvxvcghn"
+    subject = "OTP for changing password!"
+    
+    # Build the email body
+    body = f"""
+    OTP: {random_number}
+    """
+    
+    # Add latitude and longitude if available
+
+
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = email  # Assuming you're sending this alert to the user who triggered it
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Sending email using SMTP
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(sender_email, password)
+            text = msg.as_string()
+            server.sendmail(sender_email, email, text)
+            print(f"Email sent to {email}")
+    except Exception as e:
+        print(f"Error sending email: {e}")  
+    
+@user_blueprint.route("/sendOtp/<string:email>",methods=['GET','POST'])
+def sendOtp(email):
+    random_number = random.randint(1000, 9999)
+    send_email1(email,random_number)
+    
+    return jsonify({
+        'original_otp':random_number
+    }),200
+
     
