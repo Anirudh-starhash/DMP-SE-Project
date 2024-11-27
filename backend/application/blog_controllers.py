@@ -97,10 +97,16 @@ def getAllInfo():
 def getAInfoBlog(id):
     blogs = db.session.execute(db.Select(AdminBlog).where(AdminBlog.admin_blog_id == id)).scalars().all()
     blogs_serialized = [blog.to_dict() for blog in blogs]  # Convert AdminBlog instances to dict
-
-    return jsonify({
-        'blog': blogs_serialized[0]
-    }), 200
+    
+    # print(blogs_serialized)
+    if blogs_serialized==[] :
+        return jsonify ( {
+            'blog' : {}
+        }),200
+    else :
+        return jsonify({
+            'blog': blogs_serialized[0]
+        }), 200
 
 
 @blog_blueprint.route("/getInfoBlog/<int:id>", methods=['GET', 'POST'])

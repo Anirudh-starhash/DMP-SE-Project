@@ -78,12 +78,11 @@ export default {
     },
     methods:{
         back(){
-            this.$router.go(-1);
+            this.$router.push({path:'/admin_dashboard'})
         },
         add_review(){
             this.id=this.$route.params.id
-            this.x_id=JSON.parse(localStorage.getItem("info")).id
-            this.$router.push({path:`/create_admin_review/${this.id}/${this.x_id}`});
+            this.$router.push({path:`/create_admin_review/${this.id}`});
         },
         read_review(){
             this.id=this.$route.params.id

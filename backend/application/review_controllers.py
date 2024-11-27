@@ -98,9 +98,14 @@ def getAInfoReview(id):
     blogs = db.session.execute(db.Select(Reviews).where(Reviews.admin_blog_id == id)).scalars().all()
     blogs_serialized = [blog.to_dict() for blog in blogs]  # Convert AdminBlog instances to dict
 
-    return jsonify({
-        'review': blogs_serialized[0]
-    }), 200
+    if blogs_serialized==[]:
+        return jsonify({
+            'review':{}
+        }),200
+    else:
+        return jsonify({
+            'review': blogs_serialized[0]
+        }), 200
 
 
 @review_blueprint.route("/getInfoReview/<int:id>", methods=['GET', 'POST'])

@@ -78,7 +78,8 @@ export default {
     },
     methods:{
         back(){
-            this.$router.go(-1);
+            this.id=this.$route.params.id
+            this.$router.push({path:`/user_dashboard/${this.id}`});
         },
         add_review(){
             this.id=this.$route.params.id
