@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import { Pie } from 'vue-chartjs';
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 
-Chart.register(ArcElement, Tooltip, Legend);
+import { Chart, ArcElement, Tooltip, Legend, PieController } from 'chart.js';
+
+Chart.register(ArcElement, Tooltip, Legend, PieController); // Register PieController
 
 export default {
   name: 'PieChart',

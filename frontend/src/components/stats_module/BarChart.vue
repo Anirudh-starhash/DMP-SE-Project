@@ -5,10 +5,9 @@
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs';
-import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend, BarController } from 'chart.js';
 
-Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, BarController); // Register BarController
 
 export default {
   name: 'BarChart',

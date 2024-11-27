@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Scatter } from 'vue-chartjs';
+
 import { Chart, ScatterController, LinearScale, PointElement, Tooltip, Legend } from 'chart.js';
 
 Chart.register(ScatterController, LinearScale, PointElement, Tooltip, Legend);

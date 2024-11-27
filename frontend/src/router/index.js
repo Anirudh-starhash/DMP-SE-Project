@@ -35,6 +35,8 @@ import read_review from '@/components/reviews_module/read_review.vue'
 import change_password from '@/components/other_module/change_password.vue'
 import monitor_page from '@/components/other_module/monitor_page.vue'
 import forgot_password from '@/components/other_module/forgot_password.vue'
+import PieChart from '@/components/stats_module/PieChart.vue'
+import BarChart from '@/components/stats_module/BarChart.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
